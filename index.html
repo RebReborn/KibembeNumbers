@@ -10,62 +10,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-background text-foreground font-sans antialiased min-h-screen flex items-center justify-center p-4">
-    <div class="container max-w-4xl w-full">
+<body>
+    <div class="container">
         <!-- Header -->
-        <header class="bg-gradient-to-br from-primary to-secondary text-primary-foreground rounded-t-2xl p-8 text-center relative overflow-hidden shadow-lg">
-            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform"></div>
-            <div class="relative z-10">
-                <h1 class="font-headline text-4xl md:text-5xl font-bold mb-3 flex items-center justify-center gap-3">
+        <header class="header">
+            <div class="header-content">
+                <h1>
                     <i class="fas fa-language"></i>
                     Kibembe Number Translator
                 </h1>
-                <p class="text-xl opacity-90 mb-4">Convert English number words or digits to Kibembe language</p>
-                <div class="badge bg-white/20 border-white/30 text-white backdrop-blur-sm">
-                    <i class="fas fa-globe-africa mr-1"></i>
+                <p class="subtitle">Convert English number words or digits to Kibembe language</p>
+                <div class="badge">
+                    <i class="fas fa-globe-africa"></i>
                     Part of KibembeLingua - Preserving Cultural Heritage
                 </div>
             </div>
         </header>
 
         <!-- Main Content -->
-        <main class="bg-white rounded-b-2xl shadow-lg overflow-hidden">
-            <div class="p-6 md:p-8">
+        <main class="main-content">
+            <div class="content-area">
                 <!-- Input Section -->
-                <section class="mb-8">
-                    <div class="space-y-4">
-                        <label for="number-input" class="text-lg font-semibold text-foreground flex items-center gap-2">
-                            <i class="fas fa-keyboard text-primary"></i>
+                <section class="input-section">
+                    <div class="input-group">
+                        <label for="number-input" class="input-label">
+                            <i class="fas fa-keyboard"></i>
                             Enter a number (digits or English words):
                         </label>
                         
-                        <div class="relative">
+                        <div class="input-container">
                             <input 
                                 type="text" 
                                 id="number-input" 
+                                class="input-field"
                                 placeholder="e.g. 25 or one hundred two" 
                                 autocomplete="off"
-                                class="w-full px-4 py-3 rounded-lg border border-input bg-muted text-foreground placeholder-muted-foreground focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background outline-none transition-all"
                             >
                         </div>
                         
-                        <p class="text-sm text-muted-foreground flex items-center gap-1">
-                            <i class="fas fa-info-circle text-primary"></i>
+                        <p class="input-hint">
+                            <i class="fas fa-info-circle"></i>
                             You can enter numbers like "25", "one hundred two", or "seven thousand ten"
                         </p>
                         
-                        <div class="flex gap-3 mt-2">
-                            <button 
-                                id="translate-btn"
-                                class="btn bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 flex-1 font-semibold gap-2 shadow-md hover:shadow-lg transition-all"
-                            >
+                        <div class="button-group">
+                            <button id="translate-btn" class="btn btn-primary">
                                 <i class="fas fa-exchange-alt"></i>
                                 Translate to Kibembe
                             </button>
-                            <button 
-                                id="clear-btn"
-                                class="btn bg-muted text-muted-foreground hover:bg-muted/80 px-4 py-3 font-semibold gap-2"
-                            >
+                            <button id="clear-btn" class="btn btn-secondary">
                                 <i class="fas fa-eraser"></i>
                                 Clear
                             </button>
@@ -74,107 +67,96 @@
                 </section>
 
                 <!-- Result Section -->
-                <section 
-                    id="result-section"
-                    class="card border-l-4 border-l-primary p-6 mb-8 animate-fade-in"
-                >
-                    <h3 class="font-semibold text-foreground mb-3 flex items-center gap-2">
-                        <i class="fas fa-flag text-primary"></i>
+                <section id="result-section" class="result-section animate-fade-in">
+                    <h3 class="result-label">
+                        <i class="fas fa-flag"></i>
                         Kibembe Translation:
                     </h3>
-                    <div 
-                        id="result" 
-                        class="text-2xl font-bold text-primary min-h-8 transition-colors"
-                    ></div>
+                    <div id="result" class="result"></div>
                 </section>
 
                 <!-- Features -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                    <div class="bg-muted rounded-lg p-4 flex items-center gap-3">
-                        <i class="fas fa-bolt text-primary text-xl"></i>
-                        <span class="font-medium">Fast & Accurate Translation</span>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>Fast & Accurate Translation</span>
                     </div>
-                    <div class="bg-muted rounded-lg p-4 flex items-center gap-3">
-                        <i class="fas fa-mobile-alt text-primary text-xl"></i>
-                        <span class="font-medium">Works on All Devices</span>
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Works on All Devices</span>
                     </div>
-                    <div class="bg-muted rounded-lg p-4 flex items-center gap-3">
-                        <i class="fas fa-history text-primary text-xl"></i>
-                        <span class="font-medium">Translation History</span>
+                    <div class="feature">
+                        <i class="fas fa-history"></i>
+                        <span>Translation History</span>
                     </div>
                 </div>
 
                 <!-- Examples -->
-                <section class="mb-8">
-                    <h3 class="font-headline text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-                        <i class="fas fa-lightbulb text-accent"></i>
+                <section class="examples-section">
+                    <h3 class="examples-title">
+                        <i class="fas fa-lightbulb"></i>
                         Try these examples:
                     </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="card p-4 cursor-pointer transition-all hover:shadow-lg group border-secondary/20" data-input="25">
-                            <div class="font-semibold text-secondary flex items-center gap-1 mb-1 group-hover:text-secondary/80">
-                                <i class="fas fa-arrow-right text-xs"></i>
+                    <div class="examples-grid">
+                        <div class="example-card" data-input="25">
+                            <div class="example-input">
+                                <i class="fas fa-arrow-right"></i>
                                 25
                             </div>
-                            <div class="text-primary font-medium">ikana abele na etanɔ</div>
+                            <div class="example-output">ikana abele na etanɔ</div>
                         </div>
-                        <div class="card p-4 cursor-pointer transition-all hover:shadow-lg group border-secondary/20" data-input="one hundred two">
-                            <div class="font-semibold text-secondary flex items-center gap-1 mb-1 group-hover:text-secondary/80">
-                                <i class="fas fa-arrow-right text-xs"></i>
+                        <div class="example-card" data-input="one hundred two">
+                            <div class="example-input">
+                                <i class="fas fa-arrow-right"></i>
                                 one hundred two
                             </div>
-                            <div class="text-primary font-medium">ikana emo na abele</div>
+                            <div class="example-output">ikana emo na abele</div>
                         </div>
-                        <div class="card p-4 cursor-pointer transition-all hover:shadow-lg group border-secondary/20" data-input="seven thousand ten">
-                            <div class="font-semibold text-secondary flex items-center gap-1 mb-1 group-hover:text-secondary/80">
-                                <i class="fas fa-arrow-right text-xs"></i>
+                        <div class="example-card" data-input="seven thousand ten">
+                            <div class="example-input">
+                                <i class="fas fa-arrow-right"></i>
                                 seven thousand ten
                             </div>
-                            <div class="text-primary font-medium">elufu mwenji na iomi</div>
+                            <div class="example-output">elufu mwenji na iomi</div>
                         </div>
-                        <div class="card p-4 cursor-pointer transition-all hover:shadow-lg group border-secondary/20" data-input="123">
-                            <div class="font-semibold text-secondary flex items-center gap-1 mb-1 group-hover:text-secondary/80">
-                                <i class="fas fa-arrow-right text-xs"></i>
+                        <div class="example-card" data-input="123">
+                            <div class="example-input">
+                                <i class="fas fa-arrow-right"></i>
                                 123
                             </div>
-                            <div class="text-primary font-medium">ikana emo na ikana abele na asatu</div>
+                            <div class="example-output">ikana emo na ikana abele na asatu</div>
                         </div>
                     </div>
                 </section>
 
                 <!-- History Section -->
-                <section class="bg-muted rounded-xl p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-headline text-xl font-bold text-foreground flex items-center gap-2">
-                            <i class="fas fa-history text-primary"></i>
+                <section class="history-section">
+                    <div class="history-header">
+                        <h3 class="history-title">
+                            <i class="fas fa-history"></i>
                             Recent Translations
                         </h3>
-                        <button 
-                            id="clear-history"
-                            class="btn bg-white text-muted-foreground hover:bg-white/80 px-3 py-1 text-sm gap-1 border"
-                        >
-                            <i class="fas fa-trash text-xs"></i>
+                        <button id="clear-history" class="btn btn-small">
+                            <i class="fas fa-trash"></i>
                             Clear
                         </button>
                     </div>
-                    <div 
-                        id="history-list" 
-                        class="custom-scrollbar max-h-48 overflow-y-auto space-y-2"
-                    >
+                    <div id="history-list" class="history-list">
                         <!-- History items will be added here dynamically -->
                     </div>
                 </section>
             </div>
 
             <!-- Footer -->
-            <footer class="bg-muted border-t border-border px-6 py-4 text-center">
-                <p class="text-muted-foreground text-sm">
+            <footer class="footer">
+                <p class="footer-text">
                     Kibembe Number Translator &copy; 2023 | Part of KibembeLingua - Preserving Language Through Technology
                 </p>
             </footer>
         </main>
     </div>
 
+    <!-- JavaScript Files -->
     <script src="scripts/translator.js"></script>
     <script src="scripts/app.js"></script>
 </body>
