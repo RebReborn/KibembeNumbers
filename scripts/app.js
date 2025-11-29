@@ -1,4 +1,3 @@
-
 // ----------------------------
 // UI INTERACTION & HISTORY MANAGEMENT
 // ----------------------------
@@ -21,7 +20,7 @@ function initApp() {
     resultDiv = document.getElementById('result');
     resultSection = document.getElementById('result-section');
     historyList = document.getElementById('history-list');
-    exampleItems = document.querySelectorAll('[data-input]');
+    exampleItems = document.querySelectorAll('.example-card');
     
     // Load translation history from localStorage
     loadTranslationHistory();
@@ -114,11 +113,9 @@ function showResult(text, type) {
     
     // Update text color based on type
     if (type === 'success') {
-        resultDiv.classList.remove('text-destructive');
-        resultDiv.classList.add('text-primary');
+        resultDiv.classList.remove('error');
     } else {
-        resultDiv.classList.remove('text-primary');
-        resultDiv.classList.add('text-destructive');
+        resultDiv.classList.add('error');
     }
     
     // Add highlight animation
@@ -129,9 +126,9 @@ function showResult(text, type) {
  * Add highlight animation to result section
  */
 function highlightResultSection() {
-    resultSection.classList.remove('animate-pulse');
+    resultSection.classList.remove('highlight');
     void resultSection.offsetWidth; // Trigger reflow
-    resultSection.classList.add('animate-pulse');
+    resultSection.classList.add('highlight');
 }
 
 /**
@@ -140,6 +137,7 @@ function highlightResultSection() {
 function clearInput() {
     numberInput.value = '';
     resultDiv.textContent = '';
+    resultDiv.classList.remove('error');
     numberInput.focus();
 }
 
@@ -189,7 +187,7 @@ function saveTranslationHistory() {
 function renderHistory() {
     if (translationHistory.length === 0) {
         historyList.innerHTML = `
-            <div class="text-center text-muted-foreground py-4">
+            <div class="history-empty">
                 No translations yet
             </div>
         `;
@@ -197,16 +195,14 @@ function renderHistory() {
     }
     
     historyList.innerHTML = translationHistory.map(item => `
-        <div class="bg-white rounded-lg p-3 border border-border">
-            <div class="flex justify-between items-start">
-                <div>
-                    <span class="font-semibold text-foreground">${item.input}</span>
-                    <span class="mx-2 text-muted-foreground">→</span>
-                    <span class="text-primary font-medium">${item.output}</span>
-                </div>
-                <div class="text-xs text-muted-foreground whitespace-nowrap ml-2">
-                    ${item.timestamp}
-                </div>
+        <div class="history-item">
+            <div class="history-item-content">
+                <span class="history-input">${item.input}</span>
+                <span class="history-arrow">→</span>
+                <span class="history-output">${item.output}</span>
+            </div>
+            <div class="history-timestamp">
+                ${item.timestamp}
             </div>
         </div>
     `).join('');
