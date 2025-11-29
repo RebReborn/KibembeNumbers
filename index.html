@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kibembe Number Translator | KibembeLingua - Preserving Cultural Heritage</title>
-    <meta name="description" content="Convert English numbers and words to Kibembe language. Fast, accurate translations with cultural preservation focus.">
+    <title>Kibembe Number Translator | KibembeLingua</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,51 +11,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <p class="loading-text">Loading Kibembe Translator...</p>
-        </div>
-    </div>
-
-    <!-- Toast Notification Container -->
-    <div id="toast-container" class="toast-container"></div>
-
     <div class="container">
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <div class="header-badge-container">
-                    <span class="header-badge">
-                        <i class="fas fa-heart"></i>
-                        Cultural Preservation
-                    </span>
-                </div>
                 <h1>
                     <i class="fas fa-language"></i>
                     Kibembe Number Translator
                 </h1>
-                <p class="subtitle">Convert English number words or digits to Kibembe language with cultural accuracy</p>
+                <p class="subtitle">Convert English number words or digits to Kibembe language</p>
                 <div class="badge">
                     <i class="fas fa-globe-africa"></i>
                     Part of KibembeLingua - Preserving Cultural Heritage
-                </div>
-                
-                <!-- Quick Stats -->
-                <div class="quick-stats">
-                    <div class="stat">
-                        <span class="stat-number" id="translations-count">0</span>
-                        <span class="stat-label">Translations</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" id="languages-count">2</span>
-                        <span class="stat-label">Languages</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Accuracy</span>
-                    </div>
                 </div>
             </div>
         </header>
@@ -65,8 +31,7 @@
         <main class="main-content">
             <div class="content-area">
                 <!-- Input Section -->
-                <section class="input-section" aria-labelledby="input-heading">
-                    <h2 id="input-heading" class="sr-only">Number Input</h2>
+                <section class="input-section">
                     <div class="input-group">
                         <label for="number-input" class="input-label">
                             <i class="fas fa-keyboard"></i>
@@ -80,181 +45,58 @@
                                 class="input-field"
                                 placeholder="e.g. 25 or one hundred two" 
                                 autocomplete="off"
-                                aria-describedby="input-hint input-limits"
-                                maxlength="100"
                             >
-                            <div class="input-actions">
-                                <span id="char-counter" class="char-counter">0/100</span>
-                                <button type="button" id="voice-input-btn" class="icon-btn" aria-label="Voice input">
-                                    <i class="fas fa-microphone"></i>
-                                </button>
-                            </div>
                         </div>
                         
-                        <div class="input-meta">
-                            <p id="input-hint" class="input-hint">
-                                <i class="fas fa-info-circle"></i>
-                                Supports numbers 0-999,999 in digits or English words
-                            </p>
-                            <p id="input-limits" class="input-limits">
-                                <i class="fas fa-shield-alt"></i>
-                                Maximum: 999,999 | Minimum: 0
-                            </p>
-                        </div>
+                        <p class="input-hint">
+                            <i class="fas fa-info-circle"></i>
+                            You can enter numbers like "25", "one hundred two", or "seven thousand ten"
+                        </p>
                         
                         <div class="button-group">
                             <button id="translate-btn" class="btn btn-primary">
                                 <i class="fas fa-exchange-alt"></i>
                                 Translate to Kibembe
-                                <span class="btn-loading-spinner"></span>
                             </button>
                             <button id="clear-btn" class="btn btn-secondary">
                                 <i class="fas fa-eraser"></i>
                                 Clear
-                            </button>
-                            <button id="copy-all-btn" class="btn btn-secondary" style="display: none;">
-                                <i class="fas fa-copy"></i>
-                                Copy All
                             </button>
                         </div>
                     </div>
                 </section>
 
                 <!-- Result Section -->
-                <section id="result-section" class="result-section" aria-live="polite" aria-atomic="true" style="display: none;">
-                    <div class="result-header">
-                        <h3 class="result-label">
-                            <i class="fas fa-flag"></i>
-                            Kibembe Translation:
-                        </h3>
-                        <div class="result-actions">
-                            <button id="copy-result-btn" class="icon-btn" aria-label="Copy translation">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                            <button id="speak-result-btn" class="icon-btn" aria-label="Speak translation">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                            <button id="save-result-btn" class="icon-btn" aria-label="Save translation">
-                                <i class="fas fa-bookmark"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div id="result" class="result" role="status"></div>
-                    
-                    <!-- Pronunciation Guide -->
-                    <div id="pronunciation-guide" class="pronunciation-guide" style="display: none;">
-                        <h4 class="pronunciation-title">
-                            <i class="fas fa-assistive-listening-systems"></i>
-                            Pronunciation Guide
-                        </h4>
-                        <div id="pronunciation-content" class="pronunciation-content"></div>
-                    </div>
-                    
-                    <!-- Cultural Notes -->
-                    <div id="cultural-notes" class="cultural-notes" style="display: none;">
-                        <h4 class="cultural-notes-title">
-                            <i class="fas fa-landmark"></i>
-                            Cultural Context
-                        </h4>
-                        <div id="cultural-notes-content" class="cultural-notes-content"></div>
-                    </div>
-                </section>
-
-                <!-- Quick Actions -->
-                <section class="quick-actions-section">
-                    <h3 class="sr-only">Quick Actions</h3>
-                    <div class="quick-actions">
-                        <button class="quick-action-btn" data-number="1">
-                            <span class="quick-number">1-10</span>
-                            <span class="quick-label">Basics</span>
-                        </button>
-                        <button class="quick-action-btn" data-number="25">
-                            <span class="quick-number">25</span>
-                            <span class="quick-label">Example</span>
-                        </button>
-                        <button class="quick-action-btn" data-number="100">
-                            <span class="quick-number">100</span>
-                            <span class="quick-label">Hundred</span>
-                        </button>
-                        <button class="quick-action-btn" data-number="1000">
-                            <span class="quick-number">1000</span>
-                            <span class="quick-label">Thousand</span>
-                        </button>
-                    </div>
+                <section id="result-section" class="result-section animate-fade-in">
+                    <h3 class="result-label">
+                        <i class="fas fa-flag"></i>
+                        Kibembe Translation:
+                    </h3>
+                    <div id="result" class="result"></div>
                 </section>
 
                 <!-- Features -->
-                <section class="features-section" aria-labelledby="features-heading">
-                    <h2 id="features-heading" class="sr-only">Features</h2>
-                    <div class="features-grid">
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Fast & Accurate</h3>
-                                <p>Instant translations with cultural accuracy</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>All Devices</h3>
-                                <p>Optimized for mobile and desktop</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-history"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Smart History</h3>
-                                <p>Auto-saves your translations</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-volume-up"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Audio Support</h3>
-                                <p>Hear the pronunciation</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Cultural Notes</h3>
-                                <p>Learn the context</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-share-alt"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Easy Sharing</h3>
-                                <p>Copy and share results</p>
-                            </div>
-                        </div>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>Fast & Accurate Translation</span>
                     </div>
-                </section>
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Works on All Devices</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-history"></i>
+                        <span>Translation History</span>
+                    </div>
+                </div>
 
                 <!-- Examples -->
-                <section class="examples-section" aria-labelledby="examples-heading">
-                    <div class="section-header">
-                        <h3 id="examples-heading" class="examples-title">
-                            <i class="fas fa-lightbulb"></i>
-                            Try these examples:
-                        </h3>
-                        <button id="shuffle-examples" class="icon-btn" aria-label="Shuffle examples">
-                            <i class="fas fa-random"></i>
-                        </button>
-                    </div>
+                <section class="examples-section">
+                    <h3 class="examples-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Try these examples:
+                    </h3>
                     <div class="examples-grid">
                         <div class="example-card" data-input="25">
                             <div class="example-input">
@@ -262,7 +104,6 @@
                                 25
                             </div>
                             <div class="example-output">ikana abele na etanɔ</div>
-                            <div class="example-hint">Twenty five</div>
                         </div>
                         <div class="example-card" data-input="one hundred two">
                             <div class="example-input">
@@ -270,7 +111,6 @@
                                 one hundred two
                             </div>
                             <div class="example-output">ikana emo na abele</div>
-                            <div class="example-hint">102</div>
                         </div>
                         <div class="example-card" data-input="seven thousand ten">
                             <div class="example-input">
@@ -278,7 +118,6 @@
                                 seven thousand ten
                             </div>
                             <div class="example-output">elufu mwenji na iomi</div>
-                            <div class="example-hint">7,010</div>
                         </div>
                         <div class="example-card" data-input="123">
                             <div class="example-input">
@@ -286,91 +125,33 @@
                                 123
                             </div>
                             <div class="example-output">ikana emo na ikana abele na asatu</div>
-                            <div class="example-hint">One hundred twenty three</div>
                         </div>
                     </div>
                 </section>
 
                 <!-- History Section -->
-                <section class="history-section" aria-labelledby="history-heading">
-                    <div class="section-header">
-                        <h3 id="history-heading" class="history-title">
+                <section class="history-section">
+                    <div class="history-header">
+                        <h3 class="history-title">
                             <i class="fas fa-history"></i>
                             Recent Translations
-                            <span id="history-count" class="count-badge">0</span>
                         </h3>
-                        <div class="history-actions">
-                            <button id="export-history" class="btn btn-small" aria-label="Export history">
-                                <i class="fas fa-download"></i>
-                                Export
-                            </button>
-                            <button id="clear-history" class="btn btn-small" aria-label="Clear history">
-                                <i class="fas fa-trash"></i>
-                                Clear
-                            </button>
-                        </div>
+                        <button id="clear-history" class="btn btn-small">
+                            <i class="fas fa-trash"></i>
+                            Clear
+                        </button>
                     </div>
                     <div id="history-list" class="history-list">
-                        <div class="history-empty">
-                            <i class="fas fa-clock"></i>
-                            <p>No translations yet</p>
-                            <small>Your translations will appear here</small>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Cultural Info Section -->
-                <section class="cultural-info-section">
-                    <div class="cultural-info">
-                        <div class="cultural-info-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <div class="cultural-info-content">
-                            <h3>About Kibembe Language</h3>
-                            <p>Kibembe is a Bantu language spoken by the Bembe people in the Democratic Republic of Congo and Tanzania. This translator helps preserve numerical vocabulary and cultural heritage.</p>
-                            <div class="cultural-links">
-                                <a href="#" class="cultural-link">
-                                    <i class="fas fa-book"></i>
-                                    Learn More
-                                </a>
-                                <a href="#" class="cultural-link">
-                                    <i class="fas fa-download"></i>
-                                    Download Guide
-                                </a>
-                            </div>
-                        </div>
+                        <!-- History items will be added here dynamically -->
                     </div>
                 </section>
             </div>
 
             <!-- Footer -->
             <footer class="footer">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h4>KibembeLingua</h4>
-                        <p>Preserving cultural heritage through technology</p>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Connect</h4>
-                        <div class="social-links">
-                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Resources</h4>
-                        <a href="#">Language Guide</a>
-                        <a href="#">Cultural Resources</a>
-                        <a href="#">About Project</a>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p class="footer-text">
-                        Kibembe Number Translator &copy; <span id="current-year"></span> | 
-                        Part of KibembeLingua - Preserving Language Through Technology
-                    </p>
-                </div>
+                <p class="footer-text">
+                    Kibembe Number Translator &copy; <span id="current-year"></span> | Part of KibembeLingua - Preserving Language Through Technology
+                </p>
             </footer>
         </main>
     </div>
@@ -382,27 +163,6 @@
     <script>
         // Set current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Hide loading screen when page loads
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loading-screen');
-                if (loadingScreen) {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 300);
-                }
-            }, 500);
-        });
-
-        // Show loading screen if page takes too long
-        setTimeout(() => {
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen && loadingScreen.style.display !== 'none') {
-                loadingScreen.style.display = 'flex';
-            }
-        }, 100);
     </script>
 </body>
 </html>
