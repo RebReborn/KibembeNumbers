@@ -150,7 +150,7 @@
             <!-- Footer -->
             <footer class="footer">
                 <p class="footer-text">
-                    Kibembe Number Translator &copy; 2023 | Part of KibembeLingua - Preserving Language Through Technology
+                    Kibembe Number Translator &copy; <span id="current-year"></span> | Part of KibembeLingua - Preserving Language Through Technology
                 </p>
             </footer>
         </main>
@@ -159,5 +159,10 @@
     <!-- JavaScript Files -->
     <script src="scripts/translator.js"></script>
     <script src="scripts/app.js"></script>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
